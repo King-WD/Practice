@@ -39,7 +39,7 @@ include CMakeFiles/rules.ninja
 #############################################
 # Logical path to working directory; prefix for absolute paths.
 
-cmake_ninja_workdir = D$:/Practice/cmake-build-debug/
+cmake_ninja_workdir = D$:/CLion$ 2023.3.3/Practice/cmake-build-debug/
 # =============================================================================
 # Object build statements for EXECUTABLE target Practise
 
@@ -49,7 +49,7 @@ cmake_ninja_workdir = D$:/Practice/cmake-build-debug/
 
 build cmake_object_order_depends_target_Practise: phony || CMakeFiles/Practise.dir
 
-build CMakeFiles/Practise.dir/Practise.cpp.obj: CXX_COMPILER__Practise_unscanned_Debug D$:/Practice/Practise.cpp || cmake_object_order_depends_target_Practise
+build CMakeFiles/Practise.dir/Practise.cpp.obj: CXX_COMPILER__Practise_unscanned_Debug D$:/CLion$ 2023.3.3/Practice/Practise.cpp || cmake_object_order_depends_target_Practise
   DEP_FILE = CMakeFiles\Practise.dir\Practise.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Practise.dir
@@ -73,12 +73,45 @@ build Practise.exe: CXX_EXECUTABLE_LINKER__Practise_Debug CMakeFiles/Practise.di
   TARGET_IMPLIB = libPractise.dll.a
   TARGET_PDB = Practise.exe.dbg
 
+# =============================================================================
+# Object build statements for EXECUTABLE target datastruct
+
+
+#############################################
+# Order-only phony target for datastruct
+
+build cmake_object_order_depends_target_datastruct: phony || CMakeFiles/datastruct.dir
+
+build CMakeFiles/datastruct.dir/datastruct-experiment.cpp.obj: CXX_COMPILER__datastruct_unscanned_Debug D$:/CLion$ 2023.3.3/Practice/datastruct-experiment.cpp || cmake_object_order_depends_target_datastruct
+  DEP_FILE = CMakeFiles\datastruct.dir\datastruct-experiment.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\datastruct.dir
+  OBJECT_FILE_DIR = CMakeFiles\datastruct.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target datastruct
+
+
+#############################################
+# Link the executable datastruct.exe
+
+build datastruct.exe: CXX_EXECUTABLE_LINKER__datastruct_Debug CMakeFiles/datastruct.dir/datastruct-experiment.cpp.obj
+  FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\datastruct.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = datastruct.exe
+  TARGET_IMPLIB = libdatastruct.dll.a
+  TARGET_PDB = datastruct.exe.dbg
+
 
 #############################################
 # Utility command for edit_cache
 
 build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D D:\Practice\cmake-build-debug && "D:\CLion 2023.3.3\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  COMMAND = cmd.exe /C "cd /D "D:\CLion 2023.3.3\Practice\cmake-build-debug" && "D:\CLion 2023.3.3\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -89,7 +122,7 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 # Utility command for rebuild_cache
 
 build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D D:\Practice\cmake-build-debug && "D:\CLion 2023.3.3\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SD:\Practice -BD:\Practice\cmake-build-debug"
+  COMMAND = cmd.exe /C "cd /D "D:\CLion 2023.3.3\Practice\cmake-build-debug" && "D:\CLion 2023.3.3\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -S"D:\CLion 2023.3.3\Practice" -B"D:\CLion 2023.3.3\Practice\cmake-build-debug""
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -101,15 +134,17 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 
 build Practise: phony Practise.exe
 
+build datastruct: phony datastruct.exe
+
 # =============================================================================
 # Folder targets.
 
 # =============================================================================
 
 #############################################
-# Folder: D:/Practice/cmake-build-debug
+# Folder: D:/CLion 2023.3.3/Practice/cmake-build-debug
 
-build all: phony Practise.exe
+build all: phony Practise.exe datastruct.exe
 
 # =============================================================================
 # Built-in targets
@@ -118,14 +153,14 @@ build all: phony Practise.exe
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | CMakeCache.txt CMakeFiles/3.27.8/CMakeCCompiler.cmake CMakeFiles/3.27.8/CMakeCXXCompiler.cmake CMakeFiles/3.27.8/CMakeRCCompiler.cmake CMakeFiles/3.27.8/CMakeSystem.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCInformation.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCXXInformation.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCommonLanguageInclude.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeGenericSystem.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeInitializeConfigs.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeLanguageInformation.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeRCInformation.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInformation.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInitialize.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/CMakeCommonCompilerMacros.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-C.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-CXX.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C-ABI.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-CXX-ABI.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-CXX.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-Initialize.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-windres.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/WindowsPaths.cmake D$:/Practice/CMakeLists.txt
+build build.ninja: RERUN_CMAKE | CMakeCache.txt CMakeFiles/3.27.8/CMakeCCompiler.cmake CMakeFiles/3.27.8/CMakeCXXCompiler.cmake CMakeFiles/3.27.8/CMakeRCCompiler.cmake CMakeFiles/3.27.8/CMakeSystem.cmake D$:/CLion$ 2023.3.3/Practice/CMakeLists.txt D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCInformation.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCXXInformation.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCommonLanguageInclude.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeGenericSystem.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeInitializeConfigs.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeLanguageInformation.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeRCInformation.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInformation.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInitialize.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/CMakeCommonCompilerMacros.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-C.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-CXX.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C-ABI.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-CXX-ABI.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-CXX.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-Initialize.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-windres.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/WindowsPaths.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build CMakeCache.txt CMakeFiles/3.27.8/CMakeCCompiler.cmake CMakeFiles/3.27.8/CMakeCXXCompiler.cmake CMakeFiles/3.27.8/CMakeRCCompiler.cmake CMakeFiles/3.27.8/CMakeSystem.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCInformation.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCXXInformation.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCommonLanguageInclude.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeGenericSystem.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeInitializeConfigs.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeLanguageInformation.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeRCInformation.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInformation.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInitialize.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/CMakeCommonCompilerMacros.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-C.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-CXX.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C-ABI.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-CXX-ABI.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-CXX.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-Initialize.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-windres.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/WindowsPaths.cmake D$:/Practice/CMakeLists.txt: phony
+build CMakeCache.txt CMakeFiles/3.27.8/CMakeCCompiler.cmake CMakeFiles/3.27.8/CMakeCXXCompiler.cmake CMakeFiles/3.27.8/CMakeRCCompiler.cmake CMakeFiles/3.27.8/CMakeSystem.cmake D$:/CLion$ 2023.3.3/Practice/CMakeLists.txt D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCInformation.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCXXInformation.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCommonLanguageInclude.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeGenericSystem.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeInitializeConfigs.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeLanguageInformation.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeRCInformation.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInformation.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInitialize.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/CMakeCommonCompilerMacros.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-C.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-CXX.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C-ABI.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-CXX-ABI.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-CXX.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-Initialize.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-windres.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows.cmake D$:/CLion$ 2023.3.3/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/WindowsPaths.cmake: phony
 
 
 #############################################

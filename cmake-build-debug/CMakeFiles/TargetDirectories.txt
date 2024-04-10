@@ -1,3 +1,4 @@
-D:/Practice/cmake-build-debug/CMakeFiles/Practise.dir
-D:/Practice/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/Practice/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+D:/CLion 2023.3.3/Practice/cmake-build-debug/CMakeFiles/Practise.dir
+D:/CLion 2023.3.3/Practice/cmake-build-debug/CMakeFiles/datastruct.dir
+D:/CLion 2023.3.3/Practice/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/CLion 2023.3.3/Practice/cmake-build-debug/CMakeFiles/rebuild_cache.dir
