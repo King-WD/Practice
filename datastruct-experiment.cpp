@@ -13,6 +13,7 @@ class Poly{
 public:
     void Input();
     void X_judge(string &poly,Node &current,int &i,bool&label);
+    void Output(string &multiply,int pp);
     string Multiply(Poly& poly);
 };
 int main(){
@@ -55,60 +56,109 @@ void Poly::Input() {
                         }
                     }
             }
-            else label=true;current.unkown.clear();
-        }
-        else if(i==poly.length()-1&&poly[i]>='0'&&poly[i]<='9'
-        &&(poly[i-1]<='a'||poly[i-1]>='z')){
-            if(poly[i-1]=='+') {
-                current.cof=(float)(poly[i]-'0');
-                current.unkown.clear();
-                current.unkown.emplace_back('N',0);
-                nomial.emplace_back(current);
-
-            }
-            else{
-                current.cof=-(float)(poly[i]-'0');
-                current.unkown.clear();
-                current.unkown.emplace_back('N',0);
-                nomial.emplace_back(current);
-
+            else {
+                label=true;nomial.emplace_back(current);
             }
         }
+
         X_judge(poly,current,i,label);
     }
 }
 void Poly::X_judge(string &poly,Node& current,int& i,bool& label){
     if((poly[i]>='a'&&poly[i]<='z'||poly[i]>='A'&&poly[i]<='Z')){
         if(label&&i-2>=0&&poly[i-1]>='0'&&poly[i-1]<='9'){
-            if(poly[i-2]=='+') {current.cof=(float)(poly[i-1]-'0');label=false;}
-            else  {current.cof=-(float)(poly[i-1]-'0');label=false;}
+            if(poly[i-2]=='+') {
+                current.cof=(float)(poly[i-1]-'0');
+                current.unkown.clear();
+                label=false;
+            }
+            else  {
+                current.cof=-(float)(poly[i-1]-'0');
+                current.unkown.clear();
+                label=false;
+            }
         }
-        else {
-            if(i-1>=0&&poly[i-1]=='-'){current.cof=-1;label=false;}
-            else {current.cof=1;label=false;}
+        else if(label){
+            if(i-1>=0&&poly[i-1]=='-'){
+                current.cof=-1;
+                current.unkown.clear();
+                label=false;
+            }
+            else if(i-1>=0&&poly[i-1]>='0'&&poly[i-1]<='9'){
+                current.cof=(float)(poly[i-1]-'0');
+                current.unkown.clear();
+                label=false;
+            }
+            else {current.cof=1;
+                current.unkown.clear();
+                label=false;}
         }
         if(i+1<=poly.length()){
             if(poly[i+1]>='0'&&poly[i+1]<='9'){
-                current.unkown.clear();
+
                 current.unkown.emplace_back(poly[i],poly[i+1]-'0');
-                nomial.emplace_back(current);
             }
             else if(poly[i+1]=='('){
-                current.unkown.clear();
                 current.unkown.emplace_back(poly[i],-(poly[i+3]-'0'));
-                nomial.emplace_back(current);
                 i+=4;
             }
             else {
-                current.unkown.clear();
                 current.unkown.emplace_back(poly[i],1);
-                nomial.emplace_back(current);
             }
         }
         else {
-            current.unkown.clear();
             current.unkown.emplace_back(poly[i],1);
+        }
+    }
+    if(i==poly.length()-1&&poly[i]>='0'&&poly[i]<='9'
+       &&poly[i-1]>='a'&&poly[i-1]<='z')
+    {
+        nomial.emplace_back(current);
+    }
+    else if(i==poly.length()-1&&poly[i]>='0'&&poly[i]<='9'
+    &&(poly[i-1]=='+'||poly[i-1]=='-')){
+        if(poly[i-1]=='+') {
+            current.cof=(float)(poly[i]-'0');
+            current.unkown.clear();
+            current.unkown.emplace_back('N',0);
             nomial.emplace_back(current);
+
+        }
+        else{
+            current.cof=-(float)(poly[i]-'0');
+            current.unkown.clear();
+            current.unkown.emplace_back('N',0);
+            nomial.emplace_back(current);
+
+        }
+    }
+}
+void Poly::Output(string &multiply,int pp) {
+    if(pp<0){
+         stack<int> a;
+         pp=-pp;
+         do{
+             a.push(pp%10);
+             pp=pp/10;
+         }while(pp);
+         while(!a.empty()){
+             int i;
+             i=a.top();
+             a.pop();
+             multiply.push_back((char)(i+'0'));
+         }
+    }
+    else {
+        stack<int> a;
+        do{
+            a.push(pp%10);
+            pp=pp/10;
+        }while(pp);
+        int i;
+        while(!a.empty()){
+            i=a.top();
+            multiply.push_back((char)(i+'0'));
+            a.pop();
         }
     }
 }
@@ -151,24 +201,24 @@ string Poly::Multiply(Poly& poly) {
     for(auto& pp:result){
         if(pp.cof<0) {
         multiply.push_back('-');
-        multiply.push_back((char)(-pp.cof+'0'));
+            Output(multiply,(int)pp.cof);
         one=0;
         }
         else {
             if(one)
             {
-            multiply.push_back((char)(pp.cof+'0'));
+                Output(multiply,(int)pp.cof);
             one=0;
             }
             else {
                 multiply.push_back('+');
-                multiply.push_back((char)(pp.cof+'0'));
+                Output(multiply,(int)pp.cof);
             }
         }
         for(auto qq:pp.unkown) {
             if (qq.first != 'N' && qq.second != 0) {
                 multiply.push_back(qq.first);
-                multiply.push_back((char) (qq.second + '0'));
+                Output(multiply,(int)qq.second);;
             }
         }
     }
