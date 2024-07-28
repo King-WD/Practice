@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录界面</title>
+    <link rel="stylesheet" href="sign%20in.css">
+</head>
+<body>
+<div class="header_title">
+        <span class="title_con">&nbsp;&nbsp;学工系统</span>
+</div>
+
+<div id="content">
+            <div class="con_title">
+                <span class="con_title_sp">欢迎登录学工系统</span>
+            </div>
+            <form id="con_panel" class="con_panel" action="LoginController" method="get">
+                <div class="con_input">
+                    <span style="font-weight: 700">用户名：</span>
+                    <label><input name="num" type="text" placeholder="用户名"/></label>
+                </div>
+                <div class="con_input">
+                    <span style="font-weight: 700">密&nbsp;&nbsp;&nbsp;&nbsp;码：</span>
+                    <label><input name="password" type="text" placeholder="密码"/></label>
+                </div>
+                <div class="con_canvas">
+                    <span style="font-weight: 700">验证码：</span>
+                    <label><input  id="canvas_" name="canvas_auto" type="hidden"></label>
+                    <label><input id="text" name="canvas_input" type="text" placeholder="验证码"/></label>
+                    <canvas id="canvas" width="120" height="40"></canvas>
+                </div>
+                <div class="con_select">
+                    <label><input type="radio" name="t1" value="学生" />学生</label>
+                    <label><input type="radio" name="t1" value="教师" />教师</label>
+                    <label><input type="radio" name="t1" value="管理员" />管理员</label>
+                </div>
+                <input type="submit" value="登录" class="submit-btn" id="bt"/>
+            </form>
+</div>
+<script type="text/javascript" src="login%20canvas.js"></script>
+</body>
+</html>

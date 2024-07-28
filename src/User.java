@@ -1,29 +1,15 @@
 public class User {
-        private int userId;
-        private String userName;
-        private String password;
+        private String S_num;
+        private String S_password;
         // 构造函数、getter和setter
 
-        public int getUserId() {
-            return userId;
-        }
-
         public String getUserName() {
-            return userName;
+            return S_num;
         }
         public String getPassword() {
-            return password;
+            return S_password;
         }
 
-        public void setUserId(int userId) {
-            this.userId = userId;
-        }
-
-        public void setPassword(String password) {
-            this.password = password;
-        }
-
-        public void setUserName(String userName) {
-            this.userName = userName;
-        }
+        public void setUserName(String userName) {this.S_num= userName; }
+        public void setPassword(String password) {this.S_password = password; }
 }

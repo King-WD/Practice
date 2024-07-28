@@ -8,7 +8,7 @@ public class DatabaseUtils {
     static {
         dataSource = new BasicDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/173_reservation?useSSL=false&serverTimezone=UTC");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/grade?useSSL=false&serverTimezone=UTC");
         dataSource.setUsername("root");
         dataSource.setPassword("WEi36847256$");
 
