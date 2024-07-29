@@ -28,7 +28,7 @@ public class StudentController extends HttpServlet {
         if(action.equals("Grade_Query")) {
             String Course_semester=request.getParameter("semester");
             List<Report> reports=studentService.displayReport(S_num,Course_semester);
-            request.getSession().setAttribute("Course_semester", Course_semester);
+            request.setAttribute("Course_semester", Course_semester);
             request.getSession().setAttribute("Reports",reports);
             request.getRequestDispatcher("/SGrade.jsp").forward(request, response);
         }
@@ -59,6 +59,10 @@ public class StudentController extends HttpServlet {
             String result=studentService.SureChange(Old,New,Sure,S_num);
             request.getSession().setAttribute("Result",result);
             request.getRequestDispatcher("/SChangeResult.jsp").forward(request, response);
+        }
+        if (action.equals("Exit")) {
+            request.getSession().invalidate();
+            request.getRequestDispatcher("/sign in.html").forward(request, response);
         }
     }
 }

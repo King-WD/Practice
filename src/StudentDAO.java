@@ -15,20 +15,21 @@ public class StudentDAO {
     //获取学生个人信息
     public Student getInfo(String S_num) {
         Student student= new Student();
-        String sql = "SELECT * FROM student WHERE S_num="+S_num;
-
-        try (Connection conn = dataSource.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
-            while (rs.next()) {
-                student.setS_num(rs.getString("S_num"));
-                student.setS_name(rs.getString("S_name"));
-                student.setS_gender(rs.getString("S_gender"));
-                student.setS_age(rs.getInt("S_age"));
-                student.setS_addr(rs.getString("S_addr"));
-                student.setS_credits(rs.getString("S_credits"));
-                student.setS_C_num(rs.getString("S_C_num"));
-            }
+        String sql = "SELECT * FROM student WHERE S_num=?";
+        try (Connection  conn = dataSource.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)){
+             stmt.setString(1, S_num);
+             try(ResultSet rs = stmt.executeQuery()) {
+                 while (rs.next()) {
+                     student.setS_num(rs.getString("S_num"));
+                     student.setS_name(rs.getString("S_name"));
+                     student.setS_gender(rs.getString("S_gender"));
+                     student.setS_age(rs.getInt("S_age"));
+                     student.setS_addr(rs.getString("S_addr"));
+                     student.setS_credits(rs.getString("S_credits"));
+                     student.setS_C_num(rs.getString("S_C_num"));
+                 }
+             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -38,34 +39,23 @@ public class StudentDAO {
     public List<Report> getReport(String S_num, String Course_semester) {
         List<Report> reports = new ArrayList<>();
         String sql = "SELECT * FROM report WHERE S_num = ? AND Course_semester = ?";
-        Connection conn=null;
-        PreparedStatement stmt=null;
-        try {
-            conn = dataSource.getConnection();
-            stmt = conn.prepareStatement(sql);
+        try (Connection conn = dataSource.getConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.setString(1, S_num);
             stmt.setString(2, Course_semester);
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                Report report = new Report();
-                report.setS_num(rs.getString("S_num"));
-                report.setCourse_num(rs.getString("Course_num"));
-                report.setGrade(rs.getInt("Grade"));
-                report.setCourse_semester(rs.getString("Course_semester"));
-                report.setT_name(rs.getString("T_name"));
-                reports.add(report);
+            try(ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Report report = new Report();
+                    report.setS_num(rs.getString("S_num"));
+                    report.setCourse_num(rs.getString("Course_num"));
+                    report.setGrade(rs.getInt("Grade"));
+                    report.setCourse_semester(rs.getString("Course_semester"));
+                    report.setT_name(rs.getString("T_name"));
+                    reports.add(report);
+                }
             }
-
         }catch (SQLException e) {
             e.printStackTrace();
-        }finally {
-            // 关闭资源
-            try {
-                if (stmt != null) stmt.close();
-                if (conn != null) conn.close();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
         }
         return reports;
     }
@@ -103,17 +93,17 @@ public class StudentDAO {
         String sql = "SELECT student.S_num,course.Course_name,course.Course_credit " +
                 "FROM report,student,course,class WHERE student.S_num=? and student.S_num=report.S_num " +
                 "and report.Course_num=course.Course_num and class.C_num=student.S_C_num";
-        try {
-            Connection conn = dataSource.getConnection();
-            PreparedStatement   stmt = conn.prepareStatement(sql);
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement   stmt = conn.prepareStatement(sql)){
             stmt.setString(1, S_num);
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                Course_Credit course_credit=new Course_Credit();
-                course_credit.setS_num(rs.getString("S_num"));
-                course_credit.setCourse_name(rs.getString("Course_name"));
-                course_credit.setCourse_credit(rs.getString("Course_credit"));
-                course_credits.add(course_credit);
+            try(ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Course_Credit course_credit = new Course_Credit();
+                    course_credit.setS_num(rs.getString("S_num"));
+                    course_credit.setCourse_name(rs.getString("Course_name"));
+                    course_credit.setCourse_credit(rs.getString("Course_credit"));
+                    course_credits.add(course_credit);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -124,13 +114,14 @@ public class StudentDAO {
     public String getOld(String S_num){
         String sql="SELECT S_password FROM `student-account` WHERE S_num=?";
         String Old="";
-        try {
-            Connection  conn = dataSource.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(sql);
+        try(Connection  conn = dataSource.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1,S_num);
-            ResultSet  rs = stmt.executeQuery();
-            while(rs.next()){
-            Old=rs.getString("S_password");}
+            try(ResultSet  rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Old = rs.getString("S_password");
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -139,9 +130,8 @@ public class StudentDAO {
 
     public void changePassword(String S_num,String Change_Password) {
         String sql = "UPDATE `student-account` set S_password=? where S_num=?";
-        try {
-            Connection  conn = dataSource.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(sql);
+        try (Connection  conn = dataSource.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.setString(1, Change_Password);
             stmt.setString(2,S_num);
             int  rs = stmt.executeUpdate();

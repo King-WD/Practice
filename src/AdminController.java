@@ -116,7 +116,10 @@ public class AdminController extends HttpServlet {
                 request.getSession().setAttribute("Result", "不存在此人");
                 request.getRequestDispatcher("/AdminResetResult.jsp").forward(request, response);
             }
-
+        }
+        if (action.equals("Exit")) {
+            request.getSession().invalidate();
+            request.getRequestDispatcher("/sign in.html").forward(request, response);
         }
     }
 }

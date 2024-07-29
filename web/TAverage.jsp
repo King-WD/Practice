@@ -48,7 +48,7 @@
             <select name="course" id="course">
                 <c:forEach var="course" items="${sessionScope.Average_Courses}">
                 <option value= ${course}
-                        <c:if test="${sessionScope.Course_semester eq course}">selected</c:if>>
+                        <c:if test="${requestScope.Course_num eq course}">selected</c:if>>
                         ${course}</option>
                 </c:forEach>
             </select>

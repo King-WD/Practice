@@ -47,16 +47,16 @@
         <label>
           <select name="semester" id="semester">
               <option value="大一上"
-                      <c:if test="${sessionScope.Course_semester eq '大一上'}">selected</c:if>>
+                      <c:if test="${requestScope.Course_semester eq '大一上'}">selected</c:if>>
                       大一上</option>
               <option value="大一下"
-                      <c:if test="${sessionScope.Course_semester eq '大一下'}">selected</c:if>>
+                      <c:if test="${requestScope.Course_semester eq '大一下'}">selected</c:if>>
                   大一下</option>
               <option value="大二上"
-                      <c:if test="${sessionScope.Course_semester eq '大二上'}">selected</c:if>>
+                      <c:if test="${requestScope.Course_semester eq '大二上'}">selected</c:if>>
                   大二上</option>
               <option value="大二下"
-                      <c:if test="${sessionScope.Course_semester eq '大二下'}">selected</c:if>>
+                      <c:if test="${requestScope.Course_semester eq '大二下'}">selected</c:if>>
                   大二下</option>
           </select>
         </label>

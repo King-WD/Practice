@@ -16,18 +16,18 @@ public class AdminDAO{
     public Teacher Query(String T_num) {
         Teacher teacher= new Teacher();
         String sql = "SELECT * FROM teacher WHERE T_num=?";
-        try {
-            Connection conn = dataSource.getConnection();
-            PreparedStatement   stmt = conn.prepareStatement(sql);
+        try ( Connection conn = dataSource.getConnection();
+              PreparedStatement   stmt = conn.prepareStatement(sql)){
             stmt.setString(1, T_num);
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                teacher.setT_num(rs.getString("T_num"));
-                teacher.setT_name(rs.getString("T_name"));
-                teacher.setT_gender(rs.getString("T_gender"));
-                teacher.setT_age(rs.getString("T_age"));
-                teacher.setT_title(rs.getString("T_title"));
-                teacher.setT_tele(rs.getString("T_tele"));
+            try(ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    teacher.setT_num(rs.getString("T_num"));
+                    teacher.setT_name(rs.getString("T_name"));
+                    teacher.setT_gender(rs.getString("T_gender"));
+                    teacher.setT_age(rs.getString("T_age"));
+                    teacher.setT_title(rs.getString("T_title"));
+                    teacher.setT_tele(rs.getString("T_tele"));
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -37,9 +37,8 @@ public class AdminDAO{
 
     public int Insert(String[] T_infos){
         String sql = "INSERT INTO teacher (T_num,T_name,T_gender,T_age,T_title,T_tele) VALUES (?,?,?,?,?,?)";
-        try {
-            Connection conn = dataSource.getConnection();
-            PreparedStatement   stmt = conn.prepareStatement(sql);
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement   stmt = conn.prepareStatement(sql)){
             stmt.setString(1, T_infos[0]);
             stmt.setString(2, T_infos[1]);
             stmt.setString(3, T_infos[2]);
@@ -55,9 +54,8 @@ public class AdminDAO{
 
     public int Delete(String T_num) {
         String sql = "DELETE FROM teacher WHERE T_num=?";
-        try {
-            Connection conn = dataSource.getConnection();
-            PreparedStatement   stmt = conn.prepareStatement(sql);
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement   stmt = conn.prepareStatement(sql)){
             stmt.setString(1, T_num);
             return stmt.executeUpdate();
         } catch (SQLException e) {
@@ -68,9 +66,8 @@ public class AdminDAO{
 
     public int Save(String[] selects) {
         String sql = "UPDATE teacher SET T_num = ?,T_name=?,T_gender=?,T_age=?,T_title=?,T_tele=?  WHERE T_num = ?";
-        try {
-            Connection conn = dataSource.getConnection();
-            PreparedStatement   stmt = conn.prepareStatement(sql);
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement   stmt = conn.prepareStatement(sql)){
             stmt.setString(1, selects[0]);
             stmt.setString(2, selects[1]);
             stmt.setString(3, selects[2]);
@@ -88,19 +85,19 @@ public class AdminDAO{
     public Student QueryS(String S_num) {
         Student student= new Student();
         String sql = "SELECT * FROM student WHERE S_num=?";
-        try {
-            Connection conn = dataSource.getConnection();
-            PreparedStatement   stmt = conn.prepareStatement(sql);
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement   stmt = conn.prepareStatement(sql)){
             stmt.setString(1, S_num);
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                student.setS_num(rs.getString("S_num"));
-                student.setS_name(rs.getString("S_name"));
-                student.setS_gender(rs.getString("S_gender"));
-                student.setS_age(rs.getInt("S_age"));
-                student.setS_addr(rs.getString("S_addr"));
-                student.setS_credits(rs.getString("S_credits"));
-                student.setS_C_num(rs.getString("S_C_num"));
+            try(ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    student.setS_num(rs.getString("S_num"));
+                    student.setS_name(rs.getString("S_name"));
+                    student.setS_gender(rs.getString("S_gender"));
+                    student.setS_age(rs.getInt("S_age"));
+                    student.setS_addr(rs.getString("S_addr"));
+                    student.setS_credits(rs.getString("S_credits"));
+                    student.setS_C_num(rs.getString("S_C_num"));
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -110,9 +107,8 @@ public class AdminDAO{
 
     public int InsertS(String[] S_infos){
         String sql = "INSERT INTO student (S_num,S_name,S_gender,S_age,S_addr,S_credits,S_C_num) VALUES (?,?,?,?,?,?,?)";
-        try {
-            Connection conn = dataSource.getConnection();
-            PreparedStatement   stmt = conn.prepareStatement(sql);
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement   stmt = conn.prepareStatement(sql)){
             stmt.setString(1, S_infos[0]);
             stmt.setString(2, S_infos[1]);
             stmt.setString(3, S_infos[2]);
@@ -129,9 +125,8 @@ public class AdminDAO{
 
     public int DeleteS(String S_num) {
         String sql = "DELETE FROM student WHERE S_num=?";
-        try {
-            Connection conn = dataSource.getConnection();
-            PreparedStatement   stmt = conn.prepareStatement(sql);
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement   stmt = conn.prepareStatement(sql)){
             stmt.setString(1, S_num);
             return stmt.executeUpdate();
         } catch (SQLException e) {
@@ -142,9 +137,8 @@ public class AdminDAO{
 
     public int SaveS(String[] selects) {
         String sql = "UPDATE student SET S_num = ?,S_name=?,S_gender=?,S_age=?,S_addr=?,S_credits=?,S_C_num=?  WHERE S_num = ?";
-        try {
-            Connection conn = dataSource.getConnection();
-            PreparedStatement   stmt = conn.prepareStatement(sql);
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement   stmt = conn.prepareStatement(sql)){
             stmt.setString(1, selects[0]);
             stmt.setString(2, selects[1]);
             stmt.setString(3, selects[2]);
@@ -163,15 +157,15 @@ public class AdminDAO{
     public List<String> Total(String S_addr) {
         String sql = "SELECT ? AS S_addr,count(S_num) AS S_total FROM student WHERE S_addr LIKE ?";
         List<String> total = new ArrayList<>();
-        try {
-            Connection conn = dataSource.getConnection();
-            PreparedStatement   stmt = conn.prepareStatement(sql);
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement   stmt = conn.prepareStatement(sql)){
             stmt.setString(1, S_addr);
             stmt.setString(2, '%'+S_addr+'%');
-            ResultSet re = stmt.executeQuery();
-            while (re.next()) {
-                total.add(re.getString("S_addr"));
-                total.add(re.getString("S_total"));
+            try(ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    total.add(rs.getString("S_addr"));
+                    total.add(rs.getString("S_total"));
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -182,13 +176,14 @@ public class AdminDAO{
     public String getOld(String Admin_num){
         String sql="SELECT Admin_password FROM `admin-account` WHERE Admin_num=?";
         String Old="";
-        try {
-            Connection  conn = dataSource.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(sql);
+        try (Connection  conn = dataSource.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.setString(1,Admin_num);
-            ResultSet  rs = stmt.executeQuery();
-            while(rs.next()){
-                Old=rs.getString("Admin_password");}
+            try(ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Old = rs.getString("Admin_password");
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -197,9 +192,8 @@ public class AdminDAO{
 
     public void changePassword(String Admin_num,String Change_Password) {
         String sql = "UPDATE `admin-account` SET Admin_password=? WHERE Admin_num=?";
-        try {
-            Connection  conn = dataSource.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(sql);
+        try (Connection  conn = dataSource.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.setString(1, Change_Password);
             stmt.setString(2,Admin_num);
             int  rs = stmt.executeUpdate();
@@ -212,17 +206,17 @@ public class AdminDAO{
         String sql ="SELECT S_num FROM student WHERE S_num=?";
         String sql1 = "UPDATE `student-account` set S_password=? where S_num=?";
         List<String> nums = new ArrayList<>();
-        try {
-            Connection  conn = dataSource.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            PreparedStatement stmt1 = conn.prepareStatement(sql1);
+        try (Connection  conn = dataSource.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             PreparedStatement stmt1 = conn.prepareStatement(sql1)){
             stmt.setString(1, S_num);
             stmt1.setString(1, Change_Password);
             stmt1.setString(2,S_num);
-            ResultSet rs = stmt.executeQuery();
-            while(rs.next()){
-                String num = rs.getString("S_num");
-                nums.add(num);
+            try(ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    String num = rs.getString("S_num");
+                    nums.add(num);
+                }
             }
             if(nums.contains(S_num)){stmt1.executeUpdate(); return true;}
         } catch (SQLException e) {
@@ -235,17 +229,17 @@ public class AdminDAO{
         String sql = "SELECT T_num FROM teacher WHERE T_num=?";
         String sql1 = "UPDATE `teacher-account` SET T_password=? WHERE T_num=?";
         List<String> nums = new ArrayList<>();
-        try {
-            Connection  conn = dataSource.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            PreparedStatement stmt1 = conn.prepareStatement(sql1);
+        try (Connection  conn = dataSource.getConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        PreparedStatement stmt1 = conn.prepareStatement(sql1)){
             stmt.setString(1, T_num);
             stmt1.setString(1, Change_Password);
             stmt1.setString(2,T_num);
-            ResultSet rs = stmt.executeQuery();
-            while(rs.next()){
-                String num = rs.getString("T_num");
-                nums.add(num);
+            try(ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    String num = rs.getString("T_num");
+                    nums.add(num);
+                }
             }
             if(nums.contains(T_num)){stmt1.executeUpdate();return true;}
         } catch (SQLException e) {

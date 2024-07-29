@@ -23,8 +23,8 @@
             border-collapse:separate;
             border-spacing:10px;
             position:relative;
-            top:25%;
-            left:30%;
+            top:20%;
+            left:31%;
         }
         td{
             font-size:25px;
@@ -81,7 +81,12 @@
                 onmouseout="this.style.backgroundColor='#96EAF4'">
                 <a href="TeacherController?action=Password&T_num=${sessionScope.T_num}">修改密码</a></td>
         </tr>
-
+        <tr>
+            <td style="background-color:#96EAF4;height: 100px"
+                onmouseover="this.style.backgroundColor='rgb(240,240,245)'"
+                onmouseout="this.style.backgroundColor='#cafcf7'">
+                <a href="TeacherController?action=Exit">退出</a></td>
+        </tr>
     </table>
 </div>
 </body>

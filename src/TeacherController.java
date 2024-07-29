@@ -39,6 +39,7 @@ public class TeacherController extends HttpServlet {
         if(action.equals("Average_Grade_Query")){
             String Course_num=request.getParameter("course");
             Average average_grade=teacherService.displayAverage_Grade(Course_num);
+            request.setAttribute("Course_num",Course_num);
             request.getSession().setAttribute("Average_Grade",average_grade);
             request.getRequestDispatcher("/TAverage.jsp").forward(request, response);
         }
@@ -51,16 +52,19 @@ public class TeacherController extends HttpServlet {
             String Course_num=request.getParameter("course");
             List<Sort> grade_sorts=teacherService.displaySorts(Course_num);
             request.getSession().setAttribute("Grade_Sorts",grade_sorts);
+            request.setAttribute("Course_num",Course_num);
             request.getRequestDispatcher("/TSORT.jsp").forward(request, response);
         }
         if(action.equals("Submit")){
             List<String> average_courses=teacherService.displayAverage_Courses(T_num);
             request.getSession().setAttribute("Average_Courses",average_courses);
+            request.getSession().setAttribute("Grade_Sorts",null);
             request.getRequestDispatcher("/TSubmit.jsp").forward(request, response);
         }
         if(action.equals("Submit_Query")){
             String Course_num=request.getParameter("course");
             List<Sort> grade_sorts=teacherService.displaySorts(Course_num);
+            request.setAttribute("Course_num",Course_num);
             request.getSession().setAttribute("Grade_Sorts",grade_sorts);
             request.getRequestDispatcher("/TSubmit.jsp").forward(request, response);
         }
@@ -77,6 +81,7 @@ public class TeacherController extends HttpServlet {
         }
         if(action.equals("Submit_Save")){
             String[] selects=request.getParameterValues("selects");
+            System.out.println(selects.length);
             for(var select:selects){
                 String[] cs_num=select.split(",");
                 String cs_num2=request.getParameter(cs_num[0]+'_'+cs_num[1]);
@@ -97,6 +102,10 @@ public class TeacherController extends HttpServlet {
             String result=teacherService.SureChange(Old,New,Sure,T_num);
             request.getSession().setAttribute("Result",result);
             request.getRequestDispatcher("/TChangeResult.jsp").forward(request, response);
+        }
+        if (action.equals("Exit")) {
+            request.getSession().invalidate();
+            request.getRequestDispatcher("/sign in.html").forward(request, response);
         }
     }
 }
